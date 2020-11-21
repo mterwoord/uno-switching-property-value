@@ -1,0 +1,3 @@
+namespace TestUnoApp.Skia.Gtk
+{
+}
