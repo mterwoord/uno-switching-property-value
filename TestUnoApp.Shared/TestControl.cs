@@ -30,10 +30,17 @@ namespace TestUnoApp
 
         private void DataItemChanged(object oldValue, object newValue)
         {
-            var type = (newValue?.GetType()?.FullName) ?? "NULL";
-            Console.WriteLine(@"{1} In DataItemChanged. newValue.Type = {0}", type, _controlIndex);
-
+            var type     = (newValue?.GetType()?.FullName) ?? "NULL";
             var dataItem = newValue as MyDataItem;
+
+            var extraString = "";
+            if (dataItem != null)
+            {
+                extraString = $", Message = '{dataItem.Message}'";
+            }
+
+            Console.WriteLine(@"{0} In DataItemChanged. newValue.Type = {1}" + extraString, _controlIndex, type);
+
             if (dataItem == null)
             {
                 Content = new TextBlock
@@ -43,7 +50,6 @@ namespace TestUnoApp
             }
             else
             {
-                Console.WriteLine("\tMessage = '{0}'", dataItem.Message);
                 Content = new TextBlock
                           {
                               Text = dataItem.Message
